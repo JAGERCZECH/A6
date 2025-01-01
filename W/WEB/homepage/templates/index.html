@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask News Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+	<img src="{{ url_for('static', filename='logotype.jpg') }}" alt="LOGOTYPE" style="width: 150px; height: auto;">
+        <h1></h1>
+    </header>
+    <main>
+        <section>
+            <h2>Latest News</h2>
+            <p>Here is where the latest news articles will be displayed.</p>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025-26 JAGERCZECH CORP. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

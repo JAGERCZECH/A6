@@ -21,8 +21,8 @@ def signup():
         flash('Email already registered.')
         return redirect('/')
     
-    # Hash the password before storing it
-    hashed_password = generate_password_hash(password, method='sha256')
+    # Hash the password before storing it using a valid method
+    hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
     
     # Create new user and add to the database
     new_user = User(email=email, username=username, password=hashed_password)
