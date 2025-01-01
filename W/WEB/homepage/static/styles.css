@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #000;
+    color: #00ff00;
 }
 
 header {
@@ -33,10 +34,15 @@ main {
 
 .article h3 {
     margin-top: 0;
+    color: #00ff00; /* Zest Green */
+}
+
+.article p {
+    color: #df00ff; /* Neon Purple */
 }
 
 .article a {
-    color: #333;
+    color: #00ff00; /* Zest Green */
     text-decoration: none;
 }
 
