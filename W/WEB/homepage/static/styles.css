@@ -18,6 +18,32 @@ main {
     padding: 2rem;
 }
 
+.article {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.article img {
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.article h3 {
+    margin-top: 0;
+}
+
+.article a {
+    color: #333;
+    text-decoration: none;
+}
+
+.article a:hover {
+    text-decoration: underline;
+}
+
 footer {
     background-color: #62e815;
     color: #fff;
