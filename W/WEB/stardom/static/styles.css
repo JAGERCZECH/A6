@@ -6,11 +6,11 @@ body {
 }
 
 header {
-    background-color: #fff; /* Dark Blue */
+    background-color: #002868; /* Dark Blue */
     color: #ffffff; /* White */
     padding: 1rem;
     text-align: center;
-    background-image: url('{{ url_for("static", filename="logotype.jpg") }}');
+    background-image: url('{{ url_for("static", filename="logotype.png") }}');
     background-repeat: repeat-x; /* Repeat horizontally */
     background-size: contain; /* Ensure the logo is properly sized */
     height: 100px; /* Adjust height to fit the logos */
@@ -36,6 +36,7 @@ main {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     margin-bottom: 2rem;
     border-left: 5px solid #BF0A30; /* Red */
+    overflow: hidden; /* Ensure content stays within container */
 }
 
 .article img {
