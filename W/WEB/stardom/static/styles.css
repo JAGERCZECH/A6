@@ -3,6 +3,9 @@ body {
     margin: 0;
     padding: 0;
     background-color: #ffffff; /* White */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -27,6 +30,7 @@ header h1 {
 
 main {
     padding: 2rem;
+    flex: 1;
 }
 
 .article {
@@ -63,13 +67,70 @@ main {
     text-decoration: underline;
 }
 
+.subscribe-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #BF0A30; /* Red */
+    color: #ffffff; /* White */
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
+.subscribe-button:hover {
+    background-color: #002868; /* Dark Blue */
+}
+
 footer {
     background-color: #002868; /* Dark Blue */
     color: #ffffff; /* White */
     text-align: center;
     padding: 1rem;
-    position: fixed;
+    font-size: 0.75rem;
+    position: relative;
     bottom: 0;
     width: 100%;
-    font-size: 0.75rem;
+}
+
+.subscription-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.subscription-plan {
+    margin-bottom: 1rem;
+}
+
+.payment-details label {
+    display: block;
+    margin-top: 1rem;
+}
+
+.payment-details input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+button {
+    background-color: #002868; /* Dark Blue */
+    color: #ffffff; /* White */
+    border: none;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #BF0A30; /* Red */
 }

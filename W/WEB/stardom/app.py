@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
+import sqlite3
 import feedparser
 
 app = Flask(__name__)
@@ -19,10 +20,6 @@ def home():
                     media_url = link.href
                     break
 
-        # Print media URL for debugging
-        print(f"Title: {entry.title}")
-        print(f"Media URL: {media_url}")
-
         article = {
             'title': entry.title,
             'link': entry.link,
@@ -31,6 +28,35 @@ def home():
         }
         articles.append(article)
     return render_template('index.html', articles=articles)
+
+@app.route('/subscribe')
+def subscribe():
+    return render_template('subscribe.html')
+
+@app.route('/subscribe', methods=['POST'])
+def process_subscription():
+    name = request.form['name']
+    email = request.form['email']
+    plan = request.form['plan']
+    card_number = request.form['card_number']
+    expiry_date = request.form['expiry_date']
+    cvv = request.form['cvv']
+
+    try:
+        # Store the information in the SQLite database
+        conn = sqlite3.connect('subscribers.db')
+        c = conn.cursor()
+        c.execute('''
+            INSERT INTO subscribers (name, email, plan, card_number, expiry_date, cvv)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ''', (name, email, plan, card_number, expiry_date, cvv))
+        conn.commit()
+    except sqlite3.OperationalError as e:
+        print(f"Database error: {e}")
+    finally:
+        conn.close()
+
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)

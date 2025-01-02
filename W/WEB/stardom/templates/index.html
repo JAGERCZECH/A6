@@ -19,13 +19,12 @@
                     <h3><a href="{{ article.link }}" target="_blank">{{ article.title }}</a></h3>
                     {% if article.media_url %}
                         <img src="{{ article.media_url }}" alt="Article Image" style="width: 100%; height: auto;">
-                        <!-- Add debug output for media URL -->
-                        <p>{{ article.media_url }}</p>
                     {% endif %}
                     <p>{{ article.summary }}</p>
                 </div>
             {% endfor %}
         </section>
+        <a href="{{ url_for('subscribe') }}" class="subscribe-button">Subscribe Now</a>
     </main>
     <footer>
         <p>© 2025-26 Celebrity News Corp. All Rights Reserved.</p>
