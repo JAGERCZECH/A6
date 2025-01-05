@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ chain_name | capitalize }} - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        function mineBlock() {
+            fetch('/{{ chain_name }}/mine_block')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status').innerText = data.message;
+                    fetchChain();
+                    fetchChart();
+                });
+        }
+
+        function checkValidity() {
+            fetch('/{{ chain_name }}/valid')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status').innerText = data.message;
+                });
+        }
+
+        function fetchChain() {
+            fetch('/{{ chain_name }}/get_chain')
+                .then(response => response.json())
+                .then(data => {
+                    const chain = data.chain;
+                    let chainList = '';
+                    chain.forEach(block => {
+                        chainList += `<li>Index: ${block.index}, Timestamp: ${block.timestamp}, Proof: ${block.proof}, Previous Hash: ${block.previous_hash}</li>`;
+                    });
+                    document.getElementById('chain').innerHTML = chainList;
+                });
+        }
+
+        function fetchChart() {
+            const chart = document.getElementById('chart');
+            chart.src = '/{{ chain_name }}/chart.png';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchChain();
+            fetchChart();
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>{{ chain_name | capitalize }} Dashboard</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Mined Blocks Overview</h2>
+            <img id="chart" src="/{{ chain_name }}/chart.png" alt="{{ chain_name.capitalize() }} Chart">
+        </section>
+        <section>
+            <div id="controls">
+                <button onclick="mineBlock()">Mine Block</button>
+                <button onclick="checkValidity()">Check Validity</button>
+                <p id="status"></p>
+            </div>
+        </section>
+        <section>
+            <h2>Blockchain Chain</h2>
+            <ul id="chain"></ul>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 YANGYEN ANALYTICAL ENGINE. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
