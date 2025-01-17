@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+h1 {
+    color: #4285F4; /* Google blue */
+}
+
+.columns {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.column {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 30%;
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+a {
+    color: #EA4335; /* Google red */
+    text-decoration: none;
+}
