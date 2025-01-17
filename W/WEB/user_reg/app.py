@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, g, session
+from flask import Flask, render_template, request, redirect, url_for, g, session as flask_session
 import sqlite3
 from datetime import datetime
+import random
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Replace with your secret key
+app.secret_key = 'b9f4c1769d774c471c78b12b0af934aa'  # Replace with your secret key
 
 # Database configuration
 DATABASE_USERS = 'users.db'
@@ -26,8 +27,10 @@ def close_connection(exception):
 # Routes
 @app.route('/')
 def index():
-    session['last_visit'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    store_session_data(session['last_visit'])
+    if 'unique_id' not in flask_session:
+        flask_session['unique_id'] = random.randint(100000, 999999)  # Assign a unique random number
+    flask_session['last_visit'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    store_session_data(flask_session['unique_id'], flask_session['last_visit'])
     return render_template('index.html')
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -62,9 +65,9 @@ def products():
     products_data = cursor.fetchall()
     return render_template('product.html', products=products_data)
 
-def store_session_data(timestamp):
+def store_session_data(session_value, last_visit):
     db = get_db(DATABASE_SESSIONS)
-    db.execute('INSERT INTO sessions (timestamp) VALUES (?)', (timestamp,))
+    db.execute('INSERT INTO sessions (sessions, datetime) VALUES (?, ?)', (session_value, last_visit))
     db.commit()
 
 if __name__ == '__main__':

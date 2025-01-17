@@ -11,12 +11,14 @@
     <table>
         <tr>
             <th>ID</th>
-            <th>Timestamp</th>
+            <th>Sessions</th>
+            <th>Datetime</th>
         </tr>
         {% for session in sessions %}
         <tr>
             <td>{{ session[0] }}</td>
             <td>{{ session[1] }}</td>
+            <td>{{ session[2] }}</td>
         </tr>
         {% endfor %}
     </table>
