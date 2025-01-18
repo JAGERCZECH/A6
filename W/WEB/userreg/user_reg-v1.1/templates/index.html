@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Index</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="header">
+        {% if session.get('username') %}
+            <div class="user-info">
+                Welcome, {{ session['username'] }}!
+            </div>
+        {% endif %}
+    </div>
+    <h1>Welcome to the Main Index Page</h1>
+    <input type="hidden" id="session_value" value="{{ session.get('unique_id') }}">
+    <div class="columns">
+        <div class="column">
+            <a href="{{ url_for('register') }}">Register User</a>
+        </div>
+        <div class="column">
+            <a href="{{ url_for('users') }}">Registered Users</a>
+        </div>
+        <div class="column">
+            <a href="{{ url_for('sessions') }}">User Sessions</a>
+        </div>
+        <div class="column">
+            <a href="{{ url_for('products') }}">Products</a>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve the session value from the hidden input field
+        const sessionValue = document.getElementById('session_value').value;
+
+        // Display the session value in the console for verification
+        console.log("Session Value:", sessionValue);
+
+        // You can use this session value for further processing in JavaScript
+    </script>
+</body>
+</html>
