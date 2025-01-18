@@ -124,3 +124,13 @@ tr:nth-child(even) {
     padding: 5px 10px;
     margin-left: 5px;
 }
+
+.cart-icon span {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    margin-left: 5px;
+    text-decoration: none; /* Remove underline */
+    pointer-events: none;  /* Make it non-clickable */
+}

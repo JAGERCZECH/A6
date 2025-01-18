@@ -11,12 +11,13 @@
         });
 
         function addToCart(productId) {
+            const quantity = document.getElementById('quantity').value;
             fetch('/add_to_cart', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ product_id: productId, quantity: 1 })
+                body: JSON.stringify({ product_id: productId, quantity: quantity })
             })
             .then(response => response.json())
             .then(data => {
@@ -62,6 +63,8 @@
         <p><strong>Description:</strong> {{ product['description'] }}</p>
         <p><strong>Type:</strong> {{ product['product_type'] }}</p>
         <p><strong>Subtype:</strong> {{ product['product_subtype'] }}</p>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1">
         <button onclick="addToCart({{ product['id'] }})">Add to Cart</button>
     </div>
 </body>

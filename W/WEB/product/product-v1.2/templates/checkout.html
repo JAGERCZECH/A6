@@ -11,6 +11,10 @@
     <form method="POST" action="{{ url_for('checkout') }}">
         <label for="delivery_info">Delivery Information:</label><br>
         <textarea id="delivery_info" name="delivery_info" rows="4" cols="50" required></textarea><br><br>
+        <label for="delivery_address">Delivery Address:</label><br>
+        <textarea id="delivery_address" name="delivery_address" rows="4" cols="50" required></textarea><br><br>
+        <label for="payment_method">Payment Method:</label><br>
+        <input type="text" id="payment_method" name="payment_method" placeholder="Credit Card" required><br><br>
         <input type="submit" value="Place Order">
     </form>
 </body>
