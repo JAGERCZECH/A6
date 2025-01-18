@@ -10,10 +10,11 @@ app.secret_key = 'your_secret_key'  # Replace with your secret key
 DATABASE_USERS = 'users.db'
 DATABASE_SESSIONS = 'sessions.db'
 DATABASE_PRODUCTS = 'products.db'
+DATABASE_COMPLETED_ORDERS = 'completed_orders.db'  # Added this line
 
 # Functions to connect to the databases
-def get_db_connection():
-    conn = sqlite3.connect(DATABASE_PRODUCTS)
+def get_db_connection(db_name=DATABASE_PRODUCTS):
+    conn = sqlite3.connect(db_name)
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -115,7 +116,7 @@ def checkout():
         conn.close()
 
         # Store completed order in completed_orders.db
-        completed_conn = sqlite3.connect('completed_orders.db')
+        completed_conn = get_db_connection(DATABASE_COMPLETED_ORDERS)
         completed_conn.execute('INSERT INTO orders (session_id, delivery_info, order_date) VALUES (?, ?, ?)', (session_id, delivery_info, order_date))
         completed_order_id = completed_conn.execute('SELECT last_insert_rowid()').fetchone()[0]
 
@@ -132,8 +133,7 @@ def checkout():
 @app.route('/order_confirmation/<int:order_id>')
 def order_confirmation(order_id):
     # Retrieve order details from completed_orders.db
-    completed_conn = sqlite3.connect('completed_orders.db')
-    completed_conn.row_factory = sqlite3.Row
+    completed_conn = get_db_connection(DATABASE_COMPLETED_ORDERS)
     order = completed_conn.execute('SELECT * FROM orders WHERE order_id = ?', (order_id,)).fetchone()
     order_items = completed_conn.execute('''
         SELECT p.productname, p.price, oi.quantity
