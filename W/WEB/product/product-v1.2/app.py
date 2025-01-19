@@ -100,13 +100,27 @@ def cart():
 def checkout():
     if request.method == 'POST':
         session_id = flask_session['unique_id']
-        delivery_info = request.form['delivery_info']
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        email = request.form['email']
+        phone = request.form['phone']
         delivery_address = request.form['delivery_address']
-        payment_method = request.form['payment_method']
+        billing_address = request.form['billing_address']
+        credit_card_number = request.form['credit_card_number']
+        expiration_month = request.form['expiration_month']
+        expiration_year = request.form['expiration_year']
+        cvv_number = request.form['cvv_number']
+        expiration_date = f"{expiration_month}/{expiration_year}"
         order_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         conn = get_db_connection()
-        conn.execute('INSERT INTO orders (session_id, delivery_info, delivery_address, payment_method, order_date) VALUES (?, ?, ?, ?, ?)', (session_id, delivery_info, delivery_address, payment_method, order_date))
+        conn.execute('''
+            INSERT INTO orders (
+                session_id, first_name, last_name, email, phone, 
+                delivery_address, billing_address, 
+                credit_card_number, expiration_date, cvv_number, order_date
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (session_id, first_name, last_name, email, phone, delivery_address, billing_address, credit_card_number, expiration_date, cvv_number, order_date))
         order_id = conn.execute('SELECT last_insert_rowid()').fetchone()[0]
 
         cart_items = conn.execute('SELECT * FROM cart WHERE session_id = ?', (session_id,)).fetchall()
@@ -119,7 +133,13 @@ def checkout():
 
         # Store completed order in completed_orders.db
         completed_conn = get_db_connection(DATABASE_COMPLETED_ORDERS)
-        completed_conn.execute('INSERT INTO orders (session_id, delivery_info, delivery_address, payment_method, order_date) VALUES (?, ?, ?, ?, ?)', (session_id, delivery_info, delivery_address, payment_method, order_date))
+        completed_conn.execute('''
+            INSERT INTO orders (
+                session_id, first_name, last_name, email, phone, 
+                delivery_address, billing_address, 
+                credit_card_number, expiration_date, cvv_number, order_date
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (session_id, first_name, last_name, email, phone, delivery_address, billing_address, credit_card_number, expiration_date, cvv_number, order_date))
         completed_order_id = completed_conn.execute('SELECT last_insert_rowid()').fetchone()[0]
 
         for item in cart_items:
