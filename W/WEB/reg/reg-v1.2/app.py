@@ -1,11 +1,18 @@
 from flask import Flask, render_template, request, g, redirect, url_for, flash, session
+import os
 import sqlite3
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename  # Correct import
 
+# Create Flask app instance
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Necessary for flashing messages and sessions
 DATABASE = 'users.db'  # Database for users
+
+# Configuration for file uploads
+app.config['UPLOAD_FOLDER'] = 'static/uploads'
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max size
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -166,6 +173,62 @@ def profile():
 
     user = query_db('SELECT userid, useremail, username, firstname, lastname, birthdate FROM users WHERE userid = ?', [userid], one=True)
     return render_template('profile.html', user=user)
+
+@app.route('/home')
+def home():
+    if 'userid' not in session:
+        flash('Please log in first.')
+        return redirect(url_for('login'))
+
+    userid = session['userid']
+    user = query_db('SELECT userid, useremail, username, profile_picture FROM users WHERE userid = ?', [userid], one=True)
+    return render_template('home.html', user=user)
+
+@app.route('/edit_profile', methods=['GET', 'POST'])
+def edit_profile():
+    if 'userid' not in session:
+        flash('Please log in first.')
+        return redirect(url_for('login'))
+
+    userid = session['userid']
+
+    if request.method == 'POST':
+        username = request.form.get('username')
+        firstname = request.form.get('firstname')
+        lastname = request.form.get('lastname')
+        birthdate = request.form.get('birthdate')
+        bio = request.form.get('bio')
+        twitter = request.form.get('twitter')
+        linkedin = request.form.get('linkedin')
+
+        # Handle file upload
+        if 'profile_picture' in request.files:
+            profile_picture = request.files['profile_picture']
+            if profile_picture.filename != '':
+                filename = secure_filename(profile_picture.filename)
+                profile_picture.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                profile_picture_url = os.path.join('static/uploads', filename)
+            else:
+                profile_picture_url = None
+        else:
+            profile_picture_url = None
+
+        db = get_db()
+        if profile_picture_url:
+            db.execute('''
+                UPDATE users SET username = ?, firstname = ?, lastname = ?, birthdate = ?, profile_picture = ?, bio = ?, twitter = ?, linkedin = ?
+                WHERE userid = ?
+            ''', (username, firstname, lastname, birthdate, profile_picture_url, bio, twitter, linkedin, userid))
+        else:
+            db.execute('''
+                UPDATE users SET username = ?, firstname = ?, lastname = ?, birthdate = ?, bio = ?, twitter = ?, linkedin = ?
+                WHERE userid = ?
+            ''', (username, firstname, lastname, birthdate, bio, twitter, linkedin, userid))
+        db.commit()
+        flash('Profile updated successfully!')
+
+    user = query_db('SELECT userid, useremail, username, firstname, lastname, birthdate, profile_picture, bio, twitter, linkedin FROM users WHERE userid = ?', [userid], one=True)
+    return render_template('edit_profile.html', user=user)
 
 if __name__ == '__main__':
     app.run(debug=True)

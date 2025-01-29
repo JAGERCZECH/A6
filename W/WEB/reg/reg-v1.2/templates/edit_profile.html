@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <h1>Edit Profile</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form method="post" enctype="multipart/form-data">
+      <label for="useremail">Email:</label>
+      <input type="email" id="useremail" name="useremail" value="{{ user[1] }}" readonly><br>
+
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" value="{{ user[2] }}" required><br>
+
+      <label for="firstname">First Name:</label>
+      <input type="text" id="firstname" name="firstname" value="{{ user[3] }}" required><br>
+
+      <label for="lastname">Last Name:</label>
+      <input type="text" id="lastname" name="lastname" value="{{ user[4] }}" required><br>
+
+      <label for="birthdate">Birthdate:</label>
+      <input type="date" id="birthdate" name="birthdate" value="{{ user[5] }}" required><br>
+
+      <label for="profile_picture">Profile Picture:</label>
+      <input type="file" id="profile_picture" name="profile_picture"><br>
+      <img src="{{ user[6] }}" alt="Profile Picture" width="150"><br>
+
+      <label for="bio">Bio:</label>
+      <textarea id="bio" name="bio">{{ user[7] }}</textarea><br>
+
+      <label for="twitter">Twitter URL:</label>
+      <input type="text" id="twitter" name="twitter" value="{{ user[8] }}"><br>
+
+      <label for="linkedin">LinkedIn URL:</label>
+      <input type="text" id="linkedin" name="linkedin" value="{{ user[9] }}"><br>
+
+      <button type="submit">Update Profile</button>
+    </form>
+    <a href="{{ url_for('home') }}">Back to Home</a>
+  </body>
+</html>

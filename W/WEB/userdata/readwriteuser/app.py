@@ -59,5 +59,15 @@ def update(userid):
     user = query_db('SELECT * FROM users WHERE userid = ?', [userid], one=True)
     return render_template('update.html', user=user)
 
+@app.route('/home')
+def home():
+    if 'userid' not in session:
+        flash('Please log in first.')
+        return redirect(url_for('login'))
+
+    userid = session['userid']
+    user = query_db('SELECT userid, useremail, username, profile_picture FROM users WHERE userid = ?', [userid], one=True)
+    return render_template('home.html', user=user)
+
 if __name__ == '__main__':
     app.run(debug=True)
