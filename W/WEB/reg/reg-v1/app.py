@@ -142,5 +142,30 @@ def logout():
     flash('Logged out successfully.')
     return redirect(url_for('login'))
 
+@app.route('/profile', methods=['GET', 'POST'])
+def profile():
+    if 'userid' not in session:
+        flash('Please log in first.')
+        return redirect(url_for('login'))
+
+    userid = session['userid']
+
+    if request.method == 'POST':
+        username = request.form.get('username')
+        firstname = request.form.get('firstname')
+        lastname = request.form.get('lastname')
+        birthdate = request.form.get('birthdate')
+
+        db = get_db()
+        db.execute('''
+            UPDATE users SET username = ?, firstname = ?, lastname = ?, birthdate = ?
+            WHERE userid = ?
+        ''', (username, firstname, lastname, birthdate, userid))
+        db.commit()
+        flash('Profile updated successfully!')
+
+    user = query_db('SELECT userid, useremail, username, firstname, lastname, birthdate FROM users WHERE userid = ?', [userid], one=True)
+    return render_template('profile.html', user=user)
+
 if __name__ == '__main__':
     app.run(debug=True)
