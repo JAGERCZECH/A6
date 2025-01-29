@@ -207,7 +207,7 @@ def edit_profile():
             if profile_picture.filename != '':
                 filename = secure_filename(profile_picture.filename)
                 profile_picture.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                profile_picture_url = os.path.join('static/uploads', filename)
+                profile_picture_url = os.path.join(app.config['UPLOAD_FOLDER'], filename)  # Updated path
             else:
                 profile_picture_url = None
         else:
@@ -229,6 +229,14 @@ def edit_profile():
 
     user = query_db('SELECT userid, useremail, username, firstname, lastname, birthdate, profile_picture, bio, twitter, linkedin FROM users WHERE userid = ?', [userid], one=True)
     return render_template('edit_profile.html', user=user)
+
+@app.route('/profile/<username>')
+def public_profile(username):
+    user = query_db('SELECT username, firstname, lastname, birthdate, profile_picture, bio, twitter, linkedin FROM users WHERE username = ?', [username], one=True)
+    if user is None:
+        flash('User not found.')
+        return redirect(url_for('index'))
+    return render_template('public_profile.html', user=user)
 
 if __name__ == '__main__':
     app.run(debug=True)

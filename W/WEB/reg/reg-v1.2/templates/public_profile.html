@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ user[0] }}'s Profile</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <h1>{{ user[0] }}'s Profile</h1>
+    <img src="{{ url_for('static', filename=user[4]) }}" alt="{{ user[0] }}'s Profile Picture" width="150"><br>
+    <p><strong>Name:</strong> {{ user[1] }} {{ user[2] }}</p>
+    <p><strong>Birthdate:</strong> {{ user[3] }}</p>
+    <p><strong>Bio:</strong> {{ user[5] }}</p>
+    <p><strong>Twitter:</strong> <a href="{{ user[6] }}">{{ user[6] }}</a></p>
+    <p><strong>LinkedIn:</strong> <a href="{{ user[7] }}">{{ user[7] }}</a></p>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+  </body>
+</html>

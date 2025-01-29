@@ -47,7 +47,7 @@
     </div>
     <div class="main-content">
       <h1>Welcome, {{ user[2] }}</h1>
-      <img src="{{ user[3] }}" alt="Profile Picture" class="profile-image">
+      <img src="{{ url_for('static', filename=user[3]) }}" alt="Profile Picture" class="profile-image">
       <p>Status: <span class="status-green">Logged In</span></p>
     </div>
   </body>
