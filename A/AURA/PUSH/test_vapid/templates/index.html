@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Push Notification Example</title>
+</head>
+<body>
+    <h1>Welcome to the Push Notification Demo</h1>
+    <p>Subscribe to push notifications to receive updates.</p>
+    <button id="notifyButton">Send Test Notification</button>
+
+<script>
+if ('serviceWorker' in navigator && 'PushManager' in window) {
+    navigator.serviceWorker.register('/service-worker.js').then(function(swReg) {
+        console.log('Service Worker Registered', swReg);
+
+        swReg.pushManager.getSubscription().then(function(subscription) {
+            if (subscription === null) {
+                Notification.requestPermission().then(function(permission) {
+                    if (permission === 'granted') {
+                        const vapidPublicKey = 'LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZrd0V3WUhLb1pJemowQ0FRWUlLb1pJemowREFRY0RRZ0FFelhkcjh2QWNIb1dkM1YwQ0dGOWhjL21laFVXYwpzZ05lVGJYSlYzTml4YkxqQUVtbFhtaHgzQVhxejZDZlJubStidFVDcVdrK3JycFJrN1hDSm4rdnhRPT0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0tCg';
+                        const applicationServerKey = urlB64ToUint8Array(vapidPublicKey);
+
+                        console.log('Converted Key:', applicationServerKey); // Verify converted key
+
+                        const options = {
+                            userVisibleOnly: true,
+                            applicationServerKey: applicationServerKey
+                        };
+                        swReg.pushManager.subscribe(options).then(function(subscription) {
+                            fetch('/subscribe', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ subscription: subscription })
+                            }).then(() => {
+                                console.log('Subscription successful!');
+                            }).catch(error => {
+                                console.error('Subscription error:', error);
+                            });
+                        }).catch(error => {
+                            console.error('PushManager.subscribe error:', error);
+                        });
+                    }
+                });
+            }
+        }).catch(error => {
+            console.error('PushManager.getSubscription error:', error);
+        });
+    }).catch(error => {
+        console.error('Service Worker registration error:', error);
+    });
+}
+
+function urlB64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding)
+        .replace(/-/g, '+')
+        .replace(/_/g, '/');
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+
+    for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
+}
+</script>
+
+</body>
+</html>
