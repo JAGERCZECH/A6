@@ -1,55 +1,134 @@
+/* General Mobile-Friendly Styles */
 body {
     font-family: Arial, sans-serif;
+    background-color: yellow;
+    color: black;
     margin: 0;
     padding: 0;
-    background: #f4f4f4;
-    color: #333;
 }
 
-h1, h2 {
-    text-align: center;
-    color: #222;
+/* Navigation Adjustments */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: red;
 }
 
-a {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #007bff;
+/* Logo Styling */
+.logo {
+    height: 50px;
+    width: auto;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
     color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: 0.3s;
 }
 
-a:hover {
-    background: #0056b3;
-}
-
-form {
-    max-width: 400px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-input, button {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
+/* Mobile Menu */
+#mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: yellow;
     padding: 10px;
 }
 
-button {
-    background: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
+#mobile-menu a {
+    color: black;
+    padding: 10px;
+    text-decoration: none;
 }
 
-button:hover {
-    background: #218838;
+/* Mobile-Specific Adjustments */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo {
+        height: 40px;
+    }
+
+    .hamburger-menu {
+        font-size: 28px;
+    }
+
+    form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    a {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: yellow;  /* Background */
+    color: #1f23f0;  /* Ensures text remains readable */
+    margin: 0;
+    padding: 0;
+}
+
+/* Red Trim */
+header, footer {
+    background-color: red;  /* Trim */
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+/* Links */
+a {
+    color: white;
+    background-color: red;  /* Buttons */
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: darkred;
+}
+
+/* Blue Radio Buttons */
+input[type="radio"] {
+    accent-color: blue;  /* Radio Buttons */
+}
+
+/* Form Styling */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Hide menu by default */
+#mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: yellow;
+    padding: 10px;
+}
+
+/* Show menu when toggled */
+#mobile-menu.active {
+    display: flex;
 }

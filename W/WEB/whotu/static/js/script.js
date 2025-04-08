@@ -1,27 +1,22 @@
+const carousel = document.querySelector('.carousel');
+let index = 0;
+
+function slideImages() {
+    index++;
+    if (index > carousel.children.length - 1) {
+        index = 0;
+    }
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+}
+
+setInterval(slideImages, 3000);
+
 document.addEventListener("DOMContentLoaded", function () {
-    const loginForm = document.querySelector("#login-form");
-    const signupForm = document.querySelector("#signup-form");
+    const menuButton = document.querySelector(".hamburger-menu");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-    if (loginForm) {
-        loginForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            alert("Logging in... (Replace this with backend handling)");
-        });
-    }
-
-    if (signupForm) {
-        signupForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            alert("Signing up... (Replace this with backend handling)");
-        });
-    }
-    
-    // Toggle premium content alert
-    const premiumLink = document.querySelector("#premium-link");
-    if (premiumLink) {
-        premiumLink.addEventListener("click", function (e) {
-            e.preventDefault();
-            alert("Accessing premium content! Ensure authentication is set up.");
-        });
-    }
+    // Toggle the menu visibility when clicking the hamburger button
+    menuButton.addEventListener("click", function () {
+        mobileMenu.classList.toggle("active");
+    });
 });
