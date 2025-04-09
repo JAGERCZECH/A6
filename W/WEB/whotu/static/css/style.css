@@ -13,29 +13,29 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background-color: red;
+    background-color: white;
 }
 
 /* Logo Styling */
 .logo {
-    height: 50px;
+    height: 100px;
     width: auto;
 }
 
 /* Hamburger Menu */
 .hamburger-menu {
-    font-size: 24px;
+    font-size: 48px;
     background: none;
     border: none;
     cursor: pointer;
-    color: white;
+    color: red;
 }
 
 /* Mobile Menu */
 #mobile-menu {
     display: none;
     flex-direction: column;
-    background: yellow;
+    background: red;
     padding: 10px;
 }
 
@@ -85,9 +85,16 @@ body {
 }
 
 /* Red Trim */
-header, footer {
+header {
     background-color: red;  /* Trim */
     padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+footer{
+    background-color: #57c1fa;
+    padding: 16px;
     text-align: center;
     color: white;
 }
@@ -95,7 +102,7 @@ header, footer {
 /* Links */
 a {
     color: white;
-    background-color: red;  /* Buttons */
+    background-color: white;  /* Buttons */
     padding: 10px 15px;
     border-radius: 5px;
     text-decoration: none;
@@ -124,7 +131,7 @@ form {
 #mobile-menu {
     display: none;
     flex-direction: column;
-    background: yellow;
+    background: #57c1fa;
     padding: 10px;
 }
 

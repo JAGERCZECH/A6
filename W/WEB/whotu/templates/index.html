@@ -7,7 +7,7 @@
 <body>
     <header>
         <div class="nav-container">
-            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Site Logo" class="logo">
+            <img src="{{ url_for('static', filename='images/logotype.png') }}" alt="Site Logo" class="logo">
             <button class="hamburger-menu" onclick="toggleMenu()">☰</button>
         </div>
         <nav id="mobile-menu" class="hidden">
@@ -20,6 +20,9 @@
         <h1>Welcome to Our Streaming & Photography Platform</h1>
         <p>Subscribe to unlock premium content.</p>
     </main>
+    <footer>
+    	&copy WHOTOOB
+    </footer>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
