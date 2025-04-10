@@ -1,67 +1,124 @@
-/* General Mobile-Friendly Styles */
+/* ===== GENERAL STYLES ===== */
 body {
     font-family: Arial, sans-serif;
     background-color: yellow;
-    color: black;
+    color: #1f23f0;
     margin: 0;
     padding: 0;
 }
 
-/* Navigation Adjustments */
+/* ===== HEADER & NAVIGATION ===== */
+header {
+    background-color: red;
+    padding: 20px 0;
+    color: white;
+}
+
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    padding: 0 15px;
     background-color: white;
+    max-width: auto;
+    margin: 0 auto;
 }
 
-/* Logo Styling */
 .logo {
     height: 100px;
     width: auto;
+    max-width: auto;
+    display: inline;
 }
 
-/* Hamburger Menu */
+/* ===== HAMBURGER MENU ===== */
 .hamburger-menu {
     font-size: 48px;
     background: none;
     border: none;
     cursor: pointer;
     color: red;
+    padding: 10px;
+    line-height: 1;
 }
 
-/* Mobile Menu */
 #mobile-menu {
     display: none;
     flex-direction: column;
     background: red;
-    padding: 10px;
+    padding: auto;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#mobile-menu:not(.hidden) {
+    display: flex;
 }
 
 #mobile-menu a {
-    color: black;
-    padding: 10px;
+    color: white;
+    padding: 12px 15px;
     text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+    transition: background-color 0.3s;
 }
 
-/* Mobile-Specific Adjustments */
+#mobile-menu a:hover {
+    background-color: darkred;
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===== FORM STYLES ===== */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input[type="radio"] {
+    accent-color: blue;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: #57c1fa;
+    padding: 16px;
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+}
+
+/* ===== MEDIA QUERIES ===== */
 @media screen and (max-width: 768px) {
     body {
         font-size: 16px;
     }
 
     .nav-container {
-        flex-direction: column;
+        flex-direction: row;
         text-align: center;
+        padding: 10px 15px;
     }
 
     .logo {
-        height: 40px;
+        height: 60px;
     }
 
     .hamburger-menu {
-        font-size: 28px;
+        font-size: 36px;
     }
 
     form {
@@ -69,73 +126,18 @@ body {
         padding: 15px;
     }
 
-    a {
-        font-size: 14px;
-        padding: 8px;
+    #mobile-menu a {
+        font-size: 16px;
+        padding: 10px;
     }
 }
 
-/* General Page Styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: yellow;  /* Background */
-    color: #1f23f0;  /* Ensures text remains readable */
-    margin: 0;
-    padding: 0;
-}
-
-/* Red Trim */
-header {
-    background-color: red;  /* Trim */
-    padding: 20px;
-    text-align: center;
-    color: white;
-}
-
-footer{
-    background-color: #57c1fa;
-    padding: 16px;
-    text-align: center;
-    color: white;
-}
-
-/* Links */
-a {
-    color: white;
-    background-color: white;  /* Buttons */
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-a:hover {
-    background-color: darkred;
-}
-
-/* Blue Radio Buttons */
-input[type="radio"] {
-    accent-color: blue;  /* Radio Buttons */
-}
-
-/* Form Styling */
-form {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 400px;
-    margin: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Hide menu by default */
-#mobile-menu {
-    display: none;
-    flex-direction: column;
-    background: #57c1fa;
-    padding: 10px;
-}
-
-/* Show menu when toggled */
-#mobile-menu.active {
-    display: flex;
+@media screen and (max-width: 480px) {
+    .logo {
+        height: 50px;
+    }
+    
+    .hamburger-menu {
+        font-size: 32px;
+    }
 }
