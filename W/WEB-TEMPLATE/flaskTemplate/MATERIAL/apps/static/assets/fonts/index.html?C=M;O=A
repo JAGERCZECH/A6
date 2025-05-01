@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="/fancy-index/style.css">
+  <style>img[src$=".svg"] { width: 16px; }</style>
+</head>
+<body>
+  <table id="indexlist">
+   <tr class="indexhead"><th class="indexcolicon">&nbsp;</th><th class="indexcolname"><a href="?C=N;O=A">Name</a></th><th class="indexcollastmod"><a href="?C=M;O=D">Last modified</a></th><th class="indexcolsize"><a href="?C=S;O=A">Size</a></th><th class="indexcoldesc"><a href="?C=D;O=A">Description</a></th></tr>
+   <tr class="indexbreakrow"><th colspan="5"><hr /></th></tr>
+   <tr class="even"><td class="indexcolicon"><a href="/Material/material-dashboard-flask-master/material-dashboard-flask-master/apps/static/assets/"><img src="/fancy-index/icons/back.svg" alt="[PARENTDIR]" width="16" height="16" /></a></td><td class="indexcolname"><a href="/Material/material-dashboard-flask-master/material-dashboard-flask-master/apps/static/assets/">Parent Directory</a></td><td class="indexcollastmod">&nbsp;</td><td class="indexcolsize">  - </td><td class="indexcoldesc">&nbsp;</td></tr>
+   <tr class="odd"><td class="indexcolicon"><a href="nucleo-icons.eot"><img src="/fancy-index/icons/file-text.svg" alt="[   ]" width="16" height="16" /></a></td><td class="indexcolname"><a href="nucleo-icons.eot">nucleo-icons.eot</a></td><td class="indexcollastmod">2025-04-30 23:24  </td><td class="indexcolsize"> 18K</td><td class="indexcoldesc">&nbsp;</td></tr>
+   <tr class="even"><td class="indexcolicon"><a href="nucleo-icons.svg"><img src="/fancy-index/icons/svg.svg" alt="[   ]" width="16" height="16" /></a></td><td class="indexcolname"><a href="nucleo-icons.svg">nucleo-icons.svg</a></td><td class="indexcollastmod">2025-04-30 23:24  </td><td class="indexcolsize">123K</td><td class="indexcoldesc">Scalable Vector Graphic</td></tr>
+   <tr class="odd"><td class="indexcolicon"><a href="nucleo-icons.ttf"><img src="/fancy-index/icons/file-text.svg" alt="[   ]" width="16" height="16" /></a></td><td class="indexcolname"><a href="nucleo-icons.ttf">nucleo-icons.ttf</a></td><td class="indexcollastmod">2025-04-30 23:24  </td><td class="indexcolsize"> 18K</td><td class="indexcoldesc">&nbsp;</td></tr>
+   <tr class="even"><td class="indexcolicon"><a href="nucleo-icons.woff"><img src="/fancy-index/icons/file-text.svg" alt="[   ]" width="16" height="16" /></a></td><td class="indexcolname"><a href="nucleo-icons.woff">nucleo-icons.woff</a></td><td class="indexcollastmod">2025-04-30 23:24  </td><td class="indexcolsize"> 10K</td><td class="indexcoldesc">&nbsp;</td></tr>
+   <tr class="odd"><td class="indexcolicon"><a href="nucleo-icons.woff2"><img src="/fancy-index/icons/file-text.svg" alt="[   ]" width="16" height="16" /></a></td><td class="indexcolname"><a href="nucleo-icons.woff2">nucleo-icons.woff2</a></td><td class="indexcollastmod">2025-04-30 23:24  </td><td class="indexcolsize">8.4K</td><td class="indexcoldesc">&nbsp;</td></tr>
+   <tr class="even"><td class="indexcolicon"><a href="nucleo.eot"><img src="/fancy-index/icons/file-text.svg" alt="[   ]" width="16" height="16" /></a></td><td class="indexcolname"><a href="nucleo.eot">nucleo.eot</a></td><td class="indexcollastmod">2025-04-30 23:24  </td><td class="indexcolsize"> 26K</td><td class="indexcoldesc">&nbsp;</td></tr>
+   <tr class="odd"><td class="indexcolicon"><a href="nucleo.ttf"><img src="/fancy-index/icons/file-text.svg" alt="[   ]" width="16" height="16" /></a></td><td class="indexcolname"><a href="nucleo.ttf">nucleo.ttf</a></td><td class="indexcollastmod">2025-04-30 23:24  </td><td class="indexcolsize"> 26K</td><td class="indexcoldesc">&nbsp;</td></tr>
+   <tr class="even"><td class="indexcolicon"><a href="nucleo.woff"><img src="/fancy-index/icons/file-text.svg" alt="[   ]" width="16" height="16" /></a></td><td class="indexcolname"><a href="nucleo.woff">nucleo.woff</a></td><td class="indexcollastmod">2025-04-30 23:24  </td><td class="indexcolsize"> 15K</td><td class="indexcoldesc">&nbsp;</td></tr>
+   <tr class="odd"><td class="indexcolicon"><a href="nucleo.woff2"><img src="/fancy-index/icons/file-text.svg" alt="[   ]" width="16" height="16" /></a></td><td class="indexcolname"><a href="nucleo.woff2">nucleo.woff2</a></td><td class="indexcollastmod">2025-04-30 23:24  </td><td class="indexcolsize"> 12K</td><td class="indexcoldesc">&nbsp;</td></tr>
+   <tr class="indexbreakrow"><th colspan="5"><hr /></th></tr>
+</table>
+  <script src="/fancy-index/script.js"></script>
+</body>
+</html>
